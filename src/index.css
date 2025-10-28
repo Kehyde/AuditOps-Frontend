@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #3b82f6;
+}
+
+/* makes markdown rendering look better when you add it later */
+.markdown-body {
+  line-height: 1.6;
+}
