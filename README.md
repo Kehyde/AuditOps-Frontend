@@ -11,6 +11,14 @@ This is the frontend for **AuditOps**, a modern audit management platform that a
 - Modern UI built with Tailwind CSS
 - API integration with the Node.js backend
 
+---
+
+### Dashboard View
+![dashboard view](public/dashboard.png)
+
+### Audit Details View
+![audit details view](public/audit-details.png)
+
 ## Tech Stack
 
 - React (with Vite)
