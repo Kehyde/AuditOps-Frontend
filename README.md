@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# AuditOps Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for **AuditOps**, a modern audit management platform that allows users to create, manage, and export audit findings. Built with **React**, **Vite**, and **TypeScript**, it provides a fast, responsive, and intuitive interface for managing audits.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Dashboard displaying all audits with counts of findings
+- Create, edit, and delete audits
+- View audit details and manage findings
+- Export audit findings to PDF
+- Modern UI built with Tailwind CSS
+- API integration with the Node.js backend
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (with Vite)
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- Fetch API for backend communication
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Ensure you have the following installed:
+- Node.js (v18 or later)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/auditops-frontend.git
+cd auditops-frontend
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
+## APIs
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Audits
+| Method | Endpoint      | Description                         |
+| ------ | ------------- | ----------------------------------- |
+| GET    | `/audits`     | Get all audits with findings count  |
+| GET    | `/audits/:id` | Get a single audit and its findings |
+| POST   | `/audits`     | Create a new audit                  |
+| POST   | `/audits/:id` | Update an existing audit            |
+| DELETE | `/audits/:id` | Delete an audit                     |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Fidnings
+| Method | Endpoint                               | Description       |
+| ------ | -------------------------------------- | ----------------- |
+| POST   | `/audits/:auditId/findings`            | Add a new finding |
+| POST   | `/audits/:auditId/findings/:findingId` | Update a finding  |
+| DELETE | `/audits/:auditId/findings/:findingId` | Delete a finding  |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
